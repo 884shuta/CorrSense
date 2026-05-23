@@ -17,7 +17,16 @@
         import('./dist/assets/index.js')
       }
 
-      import('/src/main.jsx').catch(loadBuiltApp)
+      try {
+        const viteClient = await fetch('/@vite/client', { cache: 'no-store' })
+        if (viteClient.ok) {
+          import('/src/main.jsx')
+        } else {
+          loadBuiltApp()
+        }
+      } catch {
+        loadBuiltApp()
+      }
     </script>
   </body>
 </html>

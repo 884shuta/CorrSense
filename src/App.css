@@ -1,0 +1,226 @@
+.app-shell {
+  min-height: 100vh;
+  padding: 1.25rem;
+  box-sizing: border-box;
+  color: #1c2d44;
+}
+
+.title-area {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.title-area h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  color: #0b2f57;
+}
+
+.title-area p {
+  margin: 0.5rem auto 0;
+  max-width: 52rem;
+  color: #4f6076;
+}
+
+.workspace {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  align-items: start;
+}
+
+.chart-area {
+  background: #fff;
+  border: 1px solid #d8e1ed;
+  border-radius: 16px;
+  padding: 0.75rem;
+}
+
+.scatter-board {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  background: #f8fbff;
+  cursor: default;
+  touch-action: none;
+}
+
+.scatter-board.add-mode {
+  cursor: crosshair;
+}
+
+.board-bg {
+  fill: #ffffff;
+  stroke: #d2deef;
+}
+
+.axis {
+  stroke: #c5d4e9;
+  stroke-width: 1.5;
+}
+
+.axis-label {
+  fill: #486589;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.point {
+  fill: #2b72c4;
+  stroke: #fff;
+  stroke-width: 2;
+  cursor: grab;
+}
+
+.point.selected {
+  fill: #155297;
+}
+
+.panel-area {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.score-card,
+.control-card {
+  background: #fff;
+  border: 1px solid #d8e1ed;
+  border-radius: 14px;
+  padding: 0.9rem;
+}
+
+.score-label {
+  font-size: 0.82rem;
+  color: #4f6076;
+  margin: 0;
+}
+
+.score-value {
+  margin: 0.2rem 0;
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  color: #0d3f77;
+  font-weight: 700;
+}
+
+.score-meaning {
+  margin: 0;
+  color: #1b436f;
+  font-weight: 600;
+}
+
+.gauge {
+  position: relative;
+  margin-top: 0.6rem;
+  height: 12px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: linear-gradient(90deg, #9ab3d2, #f0f4fa 50%, #8fb3df);
+}
+
+.gauge-midline {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 2px;
+  background: #7d90ab;
+}
+
+.gauge-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3f6da3, #3f88dd);
+}
+
+.gauge-scale {
+  margin: 0.35rem 0 0;
+  color: #4f6076;
+  font-size: 0.8rem;
+}
+
+.quiz-blind .score-value {
+  letter-spacing: 0.2rem;
+}
+
+.control-card h2,
+.control-card h3 {
+  margin: 0;
+  color: #163e6a;
+}
+
+.control-card h3 {
+  margin-top: 0.8rem;
+  font-size: 1rem;
+}
+
+.control-card p {
+  color: #4f6076;
+  margin: 0.4rem 0;
+}
+
+.slider-row {
+  display: block;
+  margin-top: 0.7rem;
+  font-size: 0.92rem;
+  color: #254a74;
+}
+
+.slider-row input {
+  width: 100%;
+  margin-top: 0.35rem;
+}
+
+.button-grid,
+.preset-grid {
+  margin-top: 0.65rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+button {
+  border: 1px solid #b4c7de;
+  border-radius: 10px;
+  background: #f5f8fc;
+  color: #22466e;
+  font-size: 0.85rem;
+  padding: 0.45rem 0.55rem;
+}
+
+button:hover {
+  background: #e7eef7;
+}
+
+button:disabled {
+  opacity: 0.55;
+}
+
+.learn-card ul {
+  margin: 0.55rem 0 0;
+  padding-left: 1.15rem;
+  color: #3d5f86;
+}
+
+.learn-card li + li {
+  margin-top: 0.35rem;
+}
+
+.quiz-result {
+  margin-top: 0.65rem;
+  background: #eff6ff;
+  border-radius: 8px;
+  padding: 0.55rem;
+}
+
+@media (max-width: 980px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .app-shell {
+    padding: 0.75rem;
+  }
+
+  .button-grid,
+  .preset-grid {
+    grid-template-columns: 1fr;
+  }
+}

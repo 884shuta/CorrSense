@@ -210,6 +210,11 @@ button:disabled {
   padding: 0.55rem;
 }
 
+.quiz-reaction {
+  display: block;
+  margin-top: 0.25rem;
+}
+
 @media (max-width: 980px) {
   .workspace {
     grid-template-columns: 1fr;

@@ -11,6 +11,11 @@ npm run lint
 npm run build
 ```
 
+## GitHub Pages（main / root）公開時の注意
+
+- このリポジトリは `main / root` 配信に対応するため、`index.html` から `./dist/assets/` のビルド済みファイルを参照します。
+- アプリ本体を更新した場合は `npm run build` を実行し、`dist/` の変更もあわせてコミットしてください。
+
 ## 主な機能
 
 - 点群のランダム生成 / 手動追加 / ドラッグ移動 / 削除

@@ -2,12 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>corrsense</title>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module">
+      const loadBuiltApp = () => {
+        const style = document.createElement('link')
+        style.rel = 'stylesheet'
+        style.href = './dist/assets/main.css'
+        document.head.append(style)
+        import('./dist/assets/index.js')
+      }
+
+      try {
+        const viteClient = await fetch('/@vite/client', { cache: 'no-store' })
+        if (viteClient.ok) {
+          import('/src/main.jsx')
+        } else {
+          loadBuiltApp()
+        }
+      } catch {
+        loadBuiltApp()
+      }
+    </script>
   </body>
 </html>

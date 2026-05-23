@@ -112,6 +112,17 @@ const getCorrelationLabel = (r) => {
   return '強い負の相関'
 }
 
+const getQuizReactionBucket = (difference) => {
+  if (!Number.isFinite(difference)) return 'Other'
+  if (difference === 0) return 'just'
+  if (difference <= 0.5) return '+-0.5'
+  if (difference <= 1.5) return '+-1.5'
+  if (difference <= 3) return '+-3'
+  if (difference <= 7) return '+-7'
+  if (difference <= 20) return '+-20'
+  return 'Other'
+}
+
 function App() {
   const [pointCount, setPointCount] = useState(INITIAL_POINT_COUNT)
   const [preset, setPreset] = useState(INITIAL_PRESET)
@@ -127,6 +138,7 @@ function App() {
   const [quizMode, setQuizMode] = useState(false)
   const [quizGuess, setQuizGuess] = useState(0)
   const [quizAnswered, setQuizAnswered] = useState(false)
+  const [quizGuessLocked, setQuizGuessLocked] = useState(false)
 
   const nextIdRef = useRef(INITIAL_POINT_COUNT + 1)
   const svgRef = useRef(null)
@@ -216,9 +228,12 @@ function App() {
     setQuizMode(true)
     setQuizGuess(0)
     setQuizAnswered(false)
+    setQuizGuessLocked(false)
   }
 
   const relationHint = getCorrelationLabel(correlation)
+  const quizDifference = Math.abs(correlation - quizGuess)
+  const quizReaction = getQuizReactionBucket(quizDifference)
 
   return (
     <main className="app-shell">
@@ -385,6 +400,7 @@ function App() {
                 max="1"
                 step="0.01"
                 value={quizGuess}
+                disabled={quizGuessLocked}
                 onChange={(event) => setQuizGuess(Number(event.target.value))}
               />
             </label>
@@ -397,6 +413,7 @@ function App() {
                 onClick={() => {
                   setQuizMode(true)
                   setQuizAnswered(true)
+                  setQuizGuessLocked(true)
                 }}
               >
                 回答する
@@ -414,7 +431,8 @@ function App() {
 
             {quizMode && quizAnswered ? (
               <p className="quiz-result">
-                実際の r: <strong>{correlation.toFixed(3)}</strong> / 差: <strong>{Math.abs(correlation - quizGuess).toFixed(3)}</strong>
+                実際の r: <strong>{correlation.toFixed(3)}</strong> / 差: <strong>{quizDifference.toFixed(3)}</strong>
+                <span className="quiz-reaction">リアクション: <strong>{quizReaction}</strong></span>
               </p>
             ) : null}
           </section>

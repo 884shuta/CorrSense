@@ -1,6 +1,7 @@
 # CorrSense
 
 CorrSense は、散布図上の点を動かしながら相関係数 `r` の感覚を直感的に学べる React + Vite の学習アプリです。
+[Webサイトはこちらへ](https://884shuta.github.io/CorrSense/)
 
 ## 開発コマンド
 
